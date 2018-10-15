@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<script src='APPIAN_BASE_URL/tempo/ui/sail-client/api.nocache.js'></script>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Places Search Box</title>
+    <style>
+     
+    </style>
+  </head>
+ <body>
+<h1>Appian</h1>
+<p>Click the button to open WAVE.</p>
+
+<button onclick="myFunction()">Submit</button>
+<button onclick="myFunction2()">post message</button>
+<script>
+
+var win;
+
+function myFunction() {
+    win = window.open("file:///C:/Users/chris.lagos/Documents/Appian/Vanguard/wavesimulation.html");
+    console.log("pre post");
+    win.postMessage("message", "*");
+     console.log("post post");
+
+	}
+
+function myFunction2() {
+     win.postMessage("message", "*");
+
+	}
+</script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>CRAVE</h1>
+<p>Click the button to submit form and notify Appian.</p>
+
+<button onclick="myFunction()">Submit</button>
+
+<script>
+window.onload = function () {
+
+      window.addEventListener("message", (event) => {receiveMessage(event);}, false);
+   }
+   
+   
+function myFunction() {
+   alert("message recieved");
+}
+
+ function taskLinkClicked(event) {
+
+     event.preventDefault();
+
+     console.log("The task link has been clicked! "
+       + event.detail.taskId
+     );
+
+     // document.body.getElementById('insertPoint').getElementById('appian-task').remove();
+     var newTask = document.createElement('appian-task');
+     newTask.setAttribute("taskId", event.detail.taskId);
+     newTask.addEventListener("submit", handleSubmit, false);
+     document.body.appendChild(newTask, document.getElementById('insertPoint'));
+
+   }
+// Called sometime after postMessage is called
+function receiveMessage(event)
+{
+    console.log("received");
+  alert("test");
+}
+
+
+</script>
+
+
+</body>
+</html>
