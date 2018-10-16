@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<h1>CRAVE</h1>
+		<p>Review Case.</p>
+		<p id="caseId">Case ID:</p>
+		<p id="processor">Processor:</p>
+		<textarea id="comment" name="paragraph_text" cols="50" rows="10"></textarea>
+		<br/>
+		<br/>
+		<button onclick="myFunction2()">Complete Case</button>
+		<button onclick="myFunction3()">Send to NIGO</button>
+		<script>
+			var source;
+			var comment = document.getElementById("comment");
+			var caseId = document.getElementById("caseId");
+			var processor = document.getElementById("processor");
+
+			window.onload = function() {
+				window.addEventListener("message", (event) => {
+					receiveMessage(event);
+				}, false);
+			}
+
+			function myFunction2() {
+				source.postMessage({
+					action: "complete",
+					comment: comment.value
+				}, "*");
+			}
+
+			function myFunction3() {
+				source.postMessage({
+					action: "sendToNigo",
+					comment: comment.value
+				}, "*");
+			}
+
+			// Called sometime after postMessage is called
+			function receiveMessage(event) {
+
+				console.log("data");
+				console.log(event.data);
+
+				if (event.origin !== "https://appian-extensions-1.appianci-dynamic.net")
+					return;
+					caseId.innerHTML = "Case ID: " + caseId;
+					processor.innerHTML = "Processor: " + processor;
+					
+			}
+		</script>
+	</body>
+</html>
