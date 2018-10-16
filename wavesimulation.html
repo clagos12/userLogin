@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>CRAVE</h1>
+<p>Click the button to submit form and notify Appian.</p>
+
+<button onclick="myFunction()">Submit</button>
+<button onclick="myFunction2()">Post Message</button>
+
+<script>
+var source;
+
+window.onload = function () {
+
+      window.addEventListener("message", (event) => {receiveMessage(event);}, false);
+   }
+   
+   
+function myFunction() {
+   alert("message recieved");
+}
+
+function myFunction2() {
+   source.postMessage("message", "*");
+}
+
+
+// Called sometime after postMessage is called
+function receiveMessage(event)
+{
+	source = event.source;
+    console.log("received");
+  alert("test");
+}
+
+
+</script>
+
+
+</body>
+</html>
